@@ -39,3 +39,11 @@ select distinct city from station where not city RLIKE '[aeiou]$' and not city R
 /* show students with marks greater than 75; order by last 3 chars of name; if last 3 match, secondary order by
 ascending id */
 select name from students where marks > 75 order by substring(name, -3), id asc;
+
+
+/* Write a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a
+salary greater than  per month who have been employees for less than  months. Sort your result by ascending
+employee_id. */
+select name from employee where salary > 2000 and months < 10;
+
+
