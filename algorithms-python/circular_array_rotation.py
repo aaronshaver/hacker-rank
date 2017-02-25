@@ -4,8 +4,8 @@ a = [int(a_temp) for a_temp in input().strip().split(' ')]
 
 rotations = rotations % num_integers
 if num_integers != rotations:
-    append = a[num_integers-rotations:]
-    a = append + a
+    prepend = a[num_integers-rotations:]
+    a = prepend + a
     a = a[0:num_integers]
 
 for i in range(num_queries):
