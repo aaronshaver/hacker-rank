@@ -3,7 +3,7 @@ import sys
 
 
 # https://www.hackerrank.com/challenges/arrays-ds
-
+# ------------------------------------------------------------
 n = int(input().strip())
 arr = [int(arr_temp) for arr_temp in input().strip().split(' ')]
 
@@ -15,7 +15,7 @@ print(output)
 
 
 # https://www.hackerrank.com/challenges/2d-array
-
+# ------------------------------------------------------------
 arr = []
 for arr_i in range(6):
    arr_t = [int(arr_temp) for arr_temp in input().strip().split(' ')]
