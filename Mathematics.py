@@ -17,3 +17,19 @@ for _ in range(num_cases):
             (2 * math.factorial(num_people - 2)))
         print(output)
 # ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# https://www.hackerrank.com/challenges/lowest-triangle/problem
+import math
+
+def lowestTriangle(base, area):
+    # area = (base * height) / 2
+    # we know area, base, so just solve for height
+    height = (2 * area) / base
+    return math.ceil(height)
+
+base, area = input().strip().split(' ')
+base, area = [int(base), int(area)]
+height = lowestTriangle(base, area)
+print(height)
+# ------------------------------------------------------------------------------
