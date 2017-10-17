@@ -1,9 +1,9 @@
 #!/bin/python3
+import sys
 
 # ------------------------------------------------------------------------------
 # https://www.hackerrank.com/challenges/handshake/problem
 import math
-import sys
 
 num_cases = int(input().strip())
 for _ in range(num_cases):
