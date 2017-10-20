@@ -3,31 +3,22 @@ import sys
 
 # ------------------------------------------------------------------------------
 # https://www.hackerrank.com/challenges/kangaroo/problem
-def jump(kanga1, v1, kanga2, v2):
-    """ if kangaroo1 jumps past kangaroo2, kanga 2 will never catch up
-        there's probably a better way to do this :-(
-    """
-    for _ in range(20):
-        kanga1 += v1
-        kanga2 += v2
-        difference = kanga2 - kanga1
-        if difference == 0:
-            return True
-        if difference < 0:
-            return False
-    return True
-
 def kangaroo(x1, v1, x2, v2):
-    if (x1 <= x2) and (v1 < v2):
-        return 'NO'
-    if (x1 == x2) and (v1 == v2):
-        return 'YES'
+    # if position different, velocities are the same, then will never meet
     if (x1 != x2) and (v1 == v2):
         return 'NO'
-    if not jump(x1, v1, x2, v2):
+
+    # if kanga1 is same or left of kanga2 and slower, will never meet
+    if (x1 <= x2) and (v1 < v2):
         return 'NO'
-    else:
+
+    # if difference between velocities evenly divides into difference in initial
+    # position, kangas will meet
+    if (x1 - x2) % (v2 - v1) == 0:
         return 'YES'
+
+    # all other cases where they won't meet
+    return 'NO'
 
 x1, v1, x2, v2 = input().strip().split(' ')
 x1, v1, x2, v2 = [int(x1), int(v1), int(x2), int(v2)]
