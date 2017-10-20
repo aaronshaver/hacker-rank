@@ -2,6 +2,7 @@
 import sys
 
 # ------------------------------------------------------------------------------
+# hackerrank.com/challenges/print-the-elements-of-a-linked-list/problem
 """
  Print elements of a linked list on console
  head input could be None as well for empty list

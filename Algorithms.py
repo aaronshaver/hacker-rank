@@ -2,6 +2,40 @@
 import sys
 
 # ------------------------------------------------------------------------------
+# https://www.hackerrank.com/challenges/kangaroo/problem
+def jump(kanga1, v1, kanga2, v2):
+    """ if kangaroo1 jumps past kangaroo2, kanga 2 will never catch up
+        there's probably a better way to do this :-(
+    """
+    for _ in range(20):
+        kanga1 += v1
+        kanga2 += v2
+        difference = kanga2 - kanga1
+        if difference == 0:
+            return True
+        if difference < 0:
+            return False
+    return True
+
+def kangaroo(x1, v1, x2, v2):
+    if (x1 <= x2) and (v1 < v2):
+        return 'NO'
+    if (x1 == x2) and (v1 == v2):
+        return 'YES'
+    if (x1 != x2) and (v1 == v2):
+        return 'NO'
+    if not jump(x1, v1, x2, v2):
+        return 'NO'
+    else:
+        return 'YES'
+
+x1, v1, x2, v2 = input().strip().split(' ')
+x1, v1, x2, v2 = [int(x1), int(v1), int(x2), int(v2)]
+result = kangaroo(x1, v1, x2, v2)
+print(result)
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
 # https://www.hackerrank.com/challenges/apple-and-orange/problem
 s, t = input().strip().split(' ')
 house_left, house_right = [int(s), int(t)]
