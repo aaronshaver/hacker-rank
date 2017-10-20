@@ -14,6 +14,11 @@ def kangaroo(x1, v1, x2, v2):
 
     # if difference between velocities evenly divides into difference in initial
     # position, kangas will meet
+    #
+    # This is explained well in the discussion on HackerRank by nasimoyz:
+    # 'If the rate at which the distance is closing can add up to the original
+    # distance between them (is a factor of the original distance), you know
+    # they'll eventually meet.'
     if (x1 - x2) % (v2 - v1) == 0:
         return 'YES'
 
