@@ -2,6 +2,47 @@
 import sys
 
 # ------------------------------------------------------------------------------
+# https://www.hackerrank.com/challenges/between-two-sets/problem
+def getTotalX(a, b):
+    total = 0
+    smallest = min(a + b)
+    largest = max(a + b)
+    candidates = [x for x in range(smallest, largest + 1)]
+
+    debug_candidates = []
+    for candidate in candidates:
+        a_flag = True
+        b_flag = True
+
+        for a_val in a:
+            if not (candidate % a_val == 0):
+                a_flag = False
+                break
+        if not a_flag:
+            continue
+
+        for b_val in b:
+            if not (b_val % candidate == 0):
+                b_flag = False
+                break
+        if not b_flag:
+            continue
+
+        if a_flag and b_flag:
+            total += 1
+
+    return total
+
+if __name__ == "__main__":
+    n, m = input().strip().split(' ')
+    n, m = [int(n), int(m)]
+    a = list(map(int, input().strip().split(' ')))
+    b = list(map(int, input().strip().split(' ')))
+    total = getTotalX(a, b)
+    print(total)
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
 # https://www.hackerrank.com/challenges/breaking-best-and-worst-records/problem
 def getRecord(games):
     high_exceeded = 0
