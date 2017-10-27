@@ -2,6 +2,29 @@
 import sys
 
 # ------------------------------------------------------------------------------
+# https://www.hackerrank.com/challenges/breaking-best-and-worst-records/problem
+def getRecord(games):
+    high_exceeded = 0
+    low_exceeded = 0
+    highest = games[0]  # first game
+    lowest = games[0]
+
+    for game in games[1:]:  # skip first as it's used for initial high, low
+        if game < lowest:
+            low_exceeded += 1
+            lowest = game
+        elif game > highest:
+            high_exceeded += 1
+            highest = game
+    return [high_exceeded, low_exceeded]
+
+n = int(input().strip())
+s = list(map(int, input().strip().split(' ')))
+result = getRecord(s)
+print (" ".join(map(str, result)))
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
 # https://www.hackerrank.com/challenges/kangaroo/problem
 def kangaroo(x1, v1, x2, v2):
     # if position different, velocities are the same, then will never meet
