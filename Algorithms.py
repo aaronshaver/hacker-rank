@@ -8,15 +8,10 @@ def solve(num_squares, squares, day, month):
         return 0
 
     window_lower = 0
-    window_upper = month + 1
+    window_upper = month
 
     counter = 0
-    for i in range(1, num_squares):
-        if [x for x in squares[window_lower:window_upper] if x > day]:
-            # if any element in the window is larger than day of month, skip
-            # this window
-            continue
-
+    for i in range(1, num_squares + 1):
         if sum(squares[window_lower:window_upper]) == day:
             counter += 1
 
