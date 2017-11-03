@@ -2,6 +2,37 @@
 import sys
 
 # ------------------------------------------------------------------------------
+# https://www.hackerrank.com/challenges/the-birthday-bar/problem
+def solve(num_squares, squares, day, month):
+    if len(squares) < month:  # can't possibly have ways/solutions
+        return 0
+
+    window_lower = 0
+    window_upper = month + 1
+
+    counter = 0
+    for i in range(1, num_squares):
+        if [x for x in squares[window_lower:window_upper] if x > day]:
+            # if any element in the window is larger than day of month, skip
+            # this window
+            continue
+
+        if sum(squares[window_lower:window_upper]) == day:
+            counter += 1
+
+        window_lower += 1
+        window_upper += 1
+    return counter
+
+n = int(input().strip())
+s = list(map(int, input().strip().split(' ')))
+d, m = input().strip().split(' ')
+d, m = [int(d), int(m)]
+result = solve(n, s, d, m)
+print(result)
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
 # https://www.hackerrank.com/challenges/between-two-sets/problem
 def getTotalX(a, b):
     total = 0
