@@ -2,6 +2,35 @@
 import sys
 
 # ------------------------------------------------------------------------------
+# https://www.hackerrank.com/challenges/grading/problem
+
+def solve(grades):
+    results = []
+    for g in grades:
+        if (g < 38) or (g % 5 == 0):
+            # failing grade or ending in 5 or 0 means no need to round
+            results.append(g)
+        else:
+            if g % 10 in [3, 8]:
+                results.append(g + 2)
+            elif g % 10 in [4, 9]:
+                results.append(g + 1)
+            else:
+                results.append(g)
+    return results
+
+n = int(input().strip())
+grades = []
+grades_i = 0
+for grades_i in range(n):
+   grades_t = int(input().strip())
+   grades.append(grades_t)
+result = solve(grades)
+print ("\n".join(map(str, result)))
+# ------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------
 # https://www.hackerrank.com/challenges/the-birthday-bar/problem
 def solve(num_squares, squares, day, month):
     if len(squares) < month:  # can't possibly have ways/solutions
