@@ -2,6 +2,20 @@
 import sys
 
 # ------------------------------------------------------------------------------
+# https://www.hackerrank.com/challenges/big-sorting/problem
+n = int(input().strip())
+nums = []
+unsorted_i = 0
+for unsorted_i in range(n):
+   unsorted_t = str(input().strip())
+   nums.append(unsorted_t)
+
+nums.sort(key=int)  # doing int->str conversion is very costly in Python 3.6
+for s in nums:
+    print(s)
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
 # https://www.hackerrank.com/challenges/divisible-sum-pairs/problem
 
 def divisibleSumPairs(n, k, ar):
