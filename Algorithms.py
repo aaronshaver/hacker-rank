@@ -2,17 +2,32 @@
 import sys
 
 # ------------------------------------------------------------------------------
-# https://www.hackerrank.com/challenges/big-sorting/problem
-n = int(input().strip())
-nums = []
-unsorted_i = 0
-for unsorted_i in range(n):
-   unsorted_t = str(input().strip())
-   nums.append(unsorted_t)
+# https://www.hackerrank.com/challenges/migratory-birds/problem
 
-nums.sort(key=int)  # doing int->str conversion is very costly in Python 3.6
-for s in nums:
-    print(s)
+import operator
+
+def migratoryBirds(n, ar):
+    types = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0
+    }
+
+    for bird in ar:
+        current_value = types.get(bird)
+        types[bird] = current_value + 1
+
+    sorted_pairs = sorted(types.items(), key=operator.itemgetter(1),
+        reverse=True)
+
+    return sorted_pairs[0][0]
+
+n = int(input().strip())
+ar = list(map(int, input().strip().split(' ')))
+result = migratoryBirds(n, ar)
+print(result)
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
