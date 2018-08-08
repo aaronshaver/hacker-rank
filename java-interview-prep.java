@@ -1,3 +1,6 @@
+    // NOTE: this file doesn't do much; it's just a place to dump my solutions to the problems
+    // for my own future reference
+
     // Hash Tables: Ransom Note
     // https://www.hackerrank.com/challenges/ctci-ransom-note/problem
     static void checkMagazine(String[] magazine, String[] note) {
@@ -33,5 +36,17 @@
         }
         
         System.out.println(output);
+    }
+
+    // Arrays: Left Rotation
+    // https://www.hackerrank.com/challenges/ctci-array-left-rotation/
+    static int[] rotLeft(int[] a, int d) {
+        if (a.length == d) {
+            return a;  // no need to do computations if rotations equals array size
+        }
+        int[] secondPart = Arrays.copyOfRange(a, 0, d);
+        int[] firstPart = Arrays.copyOfRange(a, d, a.length);
+        int[] finalResult = ArrayUtils.addAll(firstPart, secondPart);
+        return finalResult;
     }
 
