@@ -1,5 +1,21 @@
-    // NOTE: this file doesn't do much; it's just a place to dump my solutions to the problems
-    // for my own future reference
+    // NOTE: this file isn't intended to compile; it's simply a place for me 
+    // to dump my solutions to the problems for my own future reference
+
+    // Mark and Toys
+    // https://www.hackerrank.com/challenges/mark-and-toys/problem
+    static int maximumToys(int[] prices, int k) {
+        Arrays.sort(prices);
+        
+        int toysCount = 0;
+        for (int price : prices) {
+            if (price <= k) {
+                k -= price;
+                toysCount++;
+            }
+        } 
+        
+        return toysCount;
+    }
 
     // Hash Tables: Ransom Note
     // https://www.hackerrank.com/challenges/ctci-ransom-note/problem
