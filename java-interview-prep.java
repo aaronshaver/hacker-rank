@@ -1,6 +1,9 @@
     // NOTE: this file isn't intended to compile; it's simply a place for me 
     // to dump my solutions to the problems for my own future reference
 
+    // Two Strings
+    // https://www.hackerrank.com/challenges/two-strings/problem
+
     // Mark and Toys
     // https://www.hackerrank.com/challenges/mark-and-toys/problem
     static int maximumToys(int[] prices, int k) {
