@@ -3,6 +3,24 @@
 
     // Two Strings
     // https://www.hackerrank.com/challenges/two-strings/problem
+    static String twoStrings(String s1, String s2) {
+        
+        // high level note: probably should have use a set data structure for this
+        
+        // store a map of each unique char found in first string for later lookup
+        HashMap<Character, Boolean> indexedCharacters = new HashMap<>();
+        for (char c : s1.toCharArray()) {
+            indexedCharacters.putIfAbsent(c, true);
+        }
+        
+        // check to see if current char exists in our hashmap created earlier
+        for (char c : s2.toCharArray()) {
+            if (indexedCharacters.containsKey(c)) {
+                return "YES";   
+            } 
+        } 
+        return "NO";
+    }
 
     // Mark and Toys
     // https://www.hackerrank.com/challenges/mark-and-toys/problem
