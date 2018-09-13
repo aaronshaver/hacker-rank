@@ -1,5 +1,34 @@
     // NOTE: this file isn't intended to compile; it's simply a place for me 
     // to dump my solutions to the problems for my own future reference
+    // ---------------------------------------------------------------------
+
+    // Sorting: Bubble Sort
+    // https://www.hackerrank.com/challenges/ctci-bubble-sort/problem
+    static void swap(int[] array, int a, int b) {
+        int temp = array[a];
+        array[a] = array[b];
+        array[b] =  temp;
+    }
+    
+    // Complete the countSwaps function below.
+    static void countSwaps(int[] a) {
+        // note: could be optimized with the "keep track of last unsorted element" trick
+        final int n = a.length;
+        int swaps = 0;
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - 1; j++) {
+                // Swap adjacent elements if they are in decreasing order
+                if (a[j] > a[j + 1]) {
+                    swap(a, j, j + 1);
+                    swaps++;             
+                }
+            }
+        }     
+        System.out.println(String.format("Array is sorted in %d swaps.", swaps));
+        System.out.println(String.format("First Element: %d", a[0]));
+        System.out.println(String.format("Last Element: %d", a[a.length - 1]));
+    }
 
     // Two Strings
     // https://www.hackerrank.com/challenges/two-strings/problem
