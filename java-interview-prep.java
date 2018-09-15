@@ -1,6 +1,29 @@
-    // NOTE: this file isn't intended to compile; it's simply a place for me 
-    // to dump my solutions to the problems for my own future reference
-    // ---------------------------------------------------------------------
+    ///////////////////////////////////////////////////////////////////////////
+    // NOTE: this file isn't intended to compile; it's simply a place for me //
+    // to dump my solutions to the problems for my own future reference      //
+    ///////////////////////////////////////////////////////////////////////////
+
+    // Alternating Characters
+    // https://www.hackerrank.com/challenges/alternating-characters/problem
+    static int alternatingCharacters(String s) {
+        int deletionsRequired = 0;
+        char currentCharacter;
+        
+        currentCharacter = s.charAt(0);
+        for (int i = 1; i < s.length(); i++) {
+            char nextCharacter = s.charAt(i);
+            if (nextCharacter == currentCharacter) {
+                // repeated A or B, so increase deletion count
+                deletionsRequired++;
+            }
+            else {
+                // switch from A to B, or from B to A, so switch what we're looking for
+                currentCharacter = nextCharacter;
+            }
+        }
+    
+        return deletionsRequired;
+    }
 
     // Sorting: Bubble Sort
     // https://www.hackerrank.com/challenges/ctci-bubble-sort/problem
