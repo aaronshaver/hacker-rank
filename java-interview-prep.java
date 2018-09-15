@@ -33,7 +33,6 @@
         array[b] =  temp;
     }
     
-    // Complete the countSwaps function below.
     static void countSwaps(int[] a) {
         // note: could be optimized with the "keep track of last unsorted element" trick
         final int n = a.length;
