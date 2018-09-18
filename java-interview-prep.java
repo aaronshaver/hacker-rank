@@ -3,6 +3,40 @@
     // to dump my solutions to the problems for my own future reference      //
     ///////////////////////////////////////////////////////////////////////////
 
+    // Strings: Making Anagrams
+    // https://www.hackerrank.com/challenges/ctci-making-anagrams/problem
+    static int getCountsDifference(String a, String b, char c) {
+        int countA = StringUtils.countMatches(a, c);
+        int countB = StringUtils.countMatches(b, c);
+        return Math.abs(countA - countB);
+    }
+    
+    static int makeAnagram(String a, String b) {
+        int totalDeletions = 0;
+        List<Character> charsSeen = new ArrayList<>();
+        
+        char[] aChars = new char[a.length()];
+        char[] bChars = new char[b.length()];
+        a.getChars(0, a.length(), aChars, 0);
+        b.getChars(0, b.length(), bChars, 0);
+        
+        for (char c : aChars) {
+            if (!charsSeen.contains(c)) {
+                charsSeen.add(c);
+                totalDeletions += getCountsDifference(a, b, c);
+            }
+        }
+        
+        for (char c : bChars) {
+            if (!charsSeen.contains(c)) {
+                charsSeen.add(c);
+                totalDeletions += getCountsDifference(a, b, c);
+            }
+        }
+        
+        return totalDeletions;
+    }
+
     // Alternating Characters
     // https://www.hackerrank.com/challenges/alternating-characters/problem
     static int alternatingCharacters(String s) {
