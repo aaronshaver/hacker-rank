@@ -3,6 +3,58 @@
     // to dump my solutions to the problems for my own future reference      //
     ///////////////////////////////////////////////////////////////////////////
 
+    // Luck Balance
+    // https://www.hackerrank.com/challenges/luck-balance/problem
+    static int luckBalance(int k, int[][] contests) {
+        int totalLuck = 0;
+        int nonImportantContests = 0;
+        
+        // sum up the luck for NON-important contests (second dimension of array == 0)
+        for (int i = 0; i < contests.length; i++) {
+            if (contests[i][1] == 0) { // check to see if non-important contest
+                nonImportantContests++;
+                totalLuck += contests[i][0]; // potential luck of that particular contest
+            }
+        }
+       
+        // save processing if no contests were marked important
+        if (nonImportantContests == contests.length) {
+            return totalLuck;
+        }
+       
+        List<Integer> importantContests = new ArrayList<>();
+        for (int i = 0; i < contests.length; i++) {
+            if (contests[i][1] == 1) { // check to see if important contest
+                importantContests.add(contests[i][0]);
+            }
+        }
+       
+        // sort by biggest luck first
+        Collections.sort(importantContests, Collections.reverseOrder());
+       
+        int numOfImportantContests = importantContests.size();
+        
+        // it's possible to have more allowed to lose than available to lose
+        // this prevents array out of bounds
+        int maxContestsAvailableToLose = k;
+        if (numOfImportantContests < k) {
+            maxContestsAvailableToLose = numOfImportantContests;
+        }
+        
+        for (int i = 0; i < maxContestsAvailableToLose; i++) {
+            // contests we can lose, thereby gaining luck up to total of k contests
+            totalLuck += importantContests.get(i);
+        }
+        
+        // only do if we have more important contests than num we're allowed to lose
+        for (int i = k; i < numOfImportantContests; i++) {
+            // contests we have to win, therefore losing luck
+            totalLuck -= importantContests.get(i);
+        }
+
+        return totalLuck;
+    }
+  
     // Strings: Making Anagrams
     // https://www.hackerrank.com/challenges/ctci-making-anagrams/problem
     static int getCountsDifference(String a, String b, char c) {
