@@ -3,6 +3,28 @@
     // to dump my solutions to the problems for my own future reference      //
     ///////////////////////////////////////////////////////////////////////////
 
+    // Minimum Absolute Difference in an Array
+    // https://www.hackerrank.com/challenges/minimum-absolute-difference-in-an-array/problem
+    static int absoluteDifference(int[] arr, int a, int b) {
+        return Math.abs(arr[a] - arr[b]);
+    }
+    
+    static int minimumAbsoluteDifference(int[] arr) {
+        Arrays.sort(arr); // the two integers producing min diff will be next to each other
+        
+        int smallestDiff = absoluteDifference(arr, 0, 1);
+        
+        for (int i = 0; i < arr.length - 1; i++) {
+            int newDiff = absoluteDifference(arr, i, i + 1);
+            
+            if (newDiff < smallestDiff) {
+                smallestDiff = newDiff;
+            }
+        }
+        
+        return smallestDiff;
+    }
+
     // Luck Balance
     // https://www.hackerrank.com/challenges/luck-balance/problem
     static int luckBalance(int k, int[][] contests) {
