@@ -3,6 +3,22 @@
     // to dump my solutions to the problems for my own future reference      //
     ///////////////////////////////////////////////////////////////////////////
 
+    // Tree: Height of a Binary Tree
+    // https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree/problem
+    //
+    // I had to look this one up. But I did walk through several cases of using it
+    // on a whiteboard until I understood how it worked.
+	public static int height(Node root) {
+        if (root == null) {
+            return -1;
+        }
+       
+        int left = 1 + height(root.left);
+        int right = 1 + height(root.right);
+        
+        return left > right ? left : right;
+    }
+
     // Minimum Absolute Difference in an Array
     // https://www.hackerrank.com/challenges/minimum-absolute-difference-in-an-array/problem
     static int absoluteDifference(int[] arr, int a, int b) {
