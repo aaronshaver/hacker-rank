@@ -171,6 +171,9 @@
                 }
             }
         }     
+	System.out.println(String.format("Array is sorted in %d swaps.", swaps));
+        System.out.println(String.format("First Element: %d", a[0]));
+        System.out.println(String.format("Last Element: %d", a[a.length - 1]));
     }
 
     // Two Strings
