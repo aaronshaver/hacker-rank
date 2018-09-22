@@ -3,6 +3,57 @@
     // to dump my solutions to the problems for my own future reference      //
     ///////////////////////////////////////////////////////////////////////////
 
+    // Flipping bits
+    // https://www.hackerrank.com/challenges/flipping-bits/problem
+    // 
+    // Whew! This was a challenging one, but I did it!
+    static long flippingBits(long n) {
+        List<Long> bits = new ArrayList<>();
+        
+        // get remainders to fill bit slots
+        long numerator = n;
+        if (numerator == 0L) {
+            bits.add(0L); // special case of incoming decimal of 0
+        }
+        else {
+            while (numerator > 0L) {
+                long remainder = numerator % 2L;
+                numerator = numerator / 2L;
+                bits.add(remainder);
+            }
+        }
+        
+        // have to reverse the bits because otherwise e.g. 4 would be 001 instead of 100
+        Collections.reverse(bits);
+        
+        // pad front of binary columns with zeros
+        if (bits.size() < 32) {
+            int lengthDifference = 32 - bits.size();
+            for (int i = 0; i < lengthDifference; i++) {
+                bits.add(0, 0L);
+            }
+        }
+        
+        // flip bits
+        for (int i = 0; i < bits.size(); i++) {
+            bits.set(i, bits.get(i) == 1L ? 0L : 1L);
+        }
+       
+       
+        // have to reverse again because we're going up from 1 to 2 to 4...
+        Collections.reverse(bits);
+        
+        // construct new base 10 integer
+        long total = 0L;
+        long binaryColumn = 1L;
+        for (long bit : bits) {
+            total += (bit * binaryColumn);
+            binaryColumn *= 2L;
+        }
+        
+        return total;
+    }
+
     // Tree: Height of a Binary Tree
     // https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree/problem
     //
