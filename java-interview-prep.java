@@ -3,7 +3,29 @@
     // to dump my solutions to the problems for my own future reference      //
     ///////////////////////////////////////////////////////////////////////////
 
-    // Flipping bits
+    // Insert a Node at the Tail of a Linked List
+    // https://www.hackerrank.com/challenges/insert-a-node-at-the-tail-of-a-linked-list/problem
+    static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data) {
+        SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
+       
+        // head node doesn't exist / empty list
+        if (head == null) {
+            return newNode;
+        }
+        // there's at least a one-node list, so add on to it
+        else {
+            SinglyLinkedListNode cursor = head; // probably should make a copy constructor
+            
+            while (cursor.next != null) {
+                cursor = cursor.next;
+            }
+            
+            cursor.next = newNode;
+            return head;
+        }
+    }
+
+// Flipping bits
     // https://www.hackerrank.com/challenges/flipping-bits/problem
     // 
     // Whew! This was a challenging one, but I did it!
@@ -59,7 +81,7 @@
     //
     // I had to look this one up. But I did walk through several cases of using it
     // on a whiteboard until I understood how it worked.
-	public static int height(Node root) {
+    public static int height(Node root) {
         if (root == null) {
             return -1;
         }
@@ -222,7 +244,7 @@
                 }
             }
         }     
-	System.out.println(String.format("Array is sorted in %d swaps.", swaps));
+    System.out.println(String.format("Array is sorted in %d swaps.", swaps));
         System.out.println(String.format("First Element: %d", a[0]));
         System.out.println(String.format("Last Element: %d", a[a.length - 1]));
     }
@@ -312,4 +334,3 @@
         int[] finalResult = ArrayUtils.addAll(firstPart, secondPart);
         return finalResult;
     }
-
