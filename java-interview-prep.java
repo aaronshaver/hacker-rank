@@ -3,6 +3,20 @@
     // to dump my solutions to the problems for my own future reference      //
     ///////////////////////////////////////////////////////////////////////////
 
+    // Insert a node at the head of a linked list
+    // https://www.hackerrank.com/challenges/insert-a-node-at-the-head-of-a-linked-list/problem
+    static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data) {
+        SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
+        
+        if (llist == null) {
+            return newNode;
+        }
+        else {
+            newNode.next = llist; // set new node's pointer to previous head node
+            return newNode;
+        }
+    }
+
     // Insert a Node at the Tail of a Linked List
     // https://www.hackerrank.com/challenges/insert-a-node-at-the-tail-of-a-linked-list/problem
     static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data) {
