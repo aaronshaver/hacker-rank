@@ -3,9 +3,42 @@
     // to dump my solutions to the problems for my own future reference      //
     ///////////////////////////////////////////////////////////////////////////
 
+    // Insert a node at a specific position in a linked list
+    // https://www.hackerrank.com/challenges/insert-a-node-at-a-specific-position-in-a-linked-list/problem
+    static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode head, int data,
+                                                     int position) {
+        SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
+        
+        if (head == null) {
+            return newNode;
+        }
+        else {
+            if (position == 0) {
+                newNode.next = head;
+                return newNode;
+            }
+            else {
+                int currentPosition = 1; // already accounted for pos. 0
+                SinglyLinkedListNode currentNode = head;
+                
+                while (currentPosition < position) {
+                    currentPosition++;
+                    currentNode = currentNode.next;
+                }
+                
+                SinglyLinkedListNode nextNode = currentNode.next;
+                currentNode.next = newNode;
+                newNode.next = nextNode;
+                
+                return head;
+            }
+        }
+    }
+
     // Insert a node at the head of a linked list
     // https://www.hackerrank.com/challenges/insert-a-node-at-the-head-of-a-linked-list/problem
     static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data) {
+        // note the var name llist doesn't make sense given it's a single node but it's theirs
         SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
         
         if (llist == null) {
