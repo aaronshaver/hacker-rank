@@ -3,6 +3,51 @@
     // to dump my solutions to the problems for my own future reference      //
     ///////////////////////////////////////////////////////////////////////////
 
+    // Super Reduced String
+    // https://www.hackerrank.com/challenges/reduced-string/problem
+    static StringBuilder stripString(StringBuilder builder) {
+        for (int i = 0; i < builder.length() - 1; i++) {
+            char char1 = builder.charAt(i);
+            char char2 = builder.charAt(i + 1);
+
+            if (char1 == char2) {
+                builder.deleteCharAt(i);
+                builder.deleteCharAt(i);
+            }
+        }
+        
+        return builder;
+    }
+    static String superReducedString(String s) {
+        if (s.length() < 2) {
+            return s;
+        }
+        else {
+            StringBuilder builder = new StringBuilder(s);            
+          
+            boolean hadPairs = false;
+            do {
+                int originalLength = builder.length();
+                builder = stripString(builder);
+                int strippedLength = builder.length();
+                if (strippedLength < originalLength) {
+                    hadPairs = true;
+                }
+                else {
+                    hadPairs = false;
+                }
+            } while (hadPairs && builder.length() > 1);
+             
+            String finalResult = builder.toString();
+            if (finalResult.length() < 1) {
+                return "Empty String";
+            }
+            else {
+                return finalResult;
+            }
+        }
+    }
+
     // Insert a node at a specific position in a linked list
     // https://www.hackerrank.com/challenges/insert-a-node-at-a-specific-position-in-a-linked-list/problem
     static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode head, int data,
