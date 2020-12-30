@@ -1,5 +1,5 @@
-# merely backup/reference of my solutions and for syntax highlighting
-# not intended to be executed from this file!
+# merely backup/reference of my solutions
+# not intended to be compiled/interpreted/executed from this file!
 
 ## ---------------------------------------------------------------------------
 ## puzzle title: 
