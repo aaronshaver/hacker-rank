@@ -19,7 +19,7 @@ function getStringAsArray(receivedInput) {
     return output
 }
 
-function evaluateEntries(inputEntries) {
+function getFinalResult(inputEntries) {
     var cursor = 0
     var firstNum;
     var secondNum;
@@ -53,7 +53,7 @@ function evaluateEntries(inputEntries) {
     }
     secondNum = temp
     
-    return computeEquation(firstNum, operator, secondNum)
+    return computeEquation(firstNum, operator, secondNum).toString(2)
 }
 
 function computeEquation(firstNum, operator, secondNum) {
@@ -69,30 +69,25 @@ function computeEquation(firstNum, operator, secondNum) {
     }
     second = parseInt(secondNumString, 2)
     
-    var result
     switch (operator) {
         case "+":
-            result = first + second
-            break
+            return first + second
         case "-":
-            result = first - second
-            break
+            return first - second
         case "*":
-            result = first * second
-            break
+            return first * second
         case "/":
-            result = Math.floor(first / second)
-            break
+            return Math.floor(first / second)
+        default:
+            return NaN
     }
-        
-    return result.toString(2)
 }
 
 function calculateResult() {
     const inputEntries = getStringAsArray(getDisplay())
-    result = evaluateEntries(inputEntries)
+    result = getFinalResult(inputEntries)
     clearResult()
-    res.innerHTML = result.toString()
+    res.innerHTML = result
 }
 
 btn0.addEventListener("click", function() { updateResult("0") })
