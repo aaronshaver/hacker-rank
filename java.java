@@ -3,6 +3,86 @@
 
 
 // ---------------------------------------------------------------------------
+// puzzle title: Day of the Programmer
+// puzzle link: https://www.hackerrank.com/challenges/day-of-the-programmer/problem 
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+public class Solution {
+    
+    static int getFebTotal(int year) {
+        if (year >= 1700 && year <= 1917) {
+            if (year % 4 == 0) {
+                return 29;
+            }
+            else {
+                return 28;
+            }
+        }
+        else if (year >= 1919) {
+            if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+                return 29;
+            }
+            else {
+                return 28;
+            }
+        }
+        else {
+            // 1918 
+            return 15;
+        }  
+    }
+    
+    static String dayOfProgrammer(int year) {
+        final Integer febTotal = getFebTotal(year);
+        final List<Integer> monthTotals = new ArrayList<>(Arrays.asList(31, febTotal, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31));
+
+        int runningTotal = 0;
+        int lastMonthSeen = -1;
+        for (int i = 0; i < 12; i++) {
+            if (runningTotal + monthTotals.get(i) <= 256) {
+                runningTotal += monthTotals.get(i);
+            }
+            else {
+                lastMonthSeen = i;
+                break;
+            }
+        }
+        
+        final int dayOfMonth = 256 - runningTotal;
+        final int monthOfYear = lastMonthSeen + 1; // convert to calendar-style / 1-indexing
+        
+        return String.format("%02d.%02d.%d", dayOfMonth, monthOfYear, year);
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int year = Integer.parseInt(bufferedReader.readLine().trim());
+
+        String result = dayOfProgrammer(year);
+
+        bufferedWriter.write(result);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
+// ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
 // puzzle title: Java Loops II
 // puzzle link: https://www.hackerrank.com/challenges/java-loops/problem
 
