@@ -1,7 +1,6 @@
 
 
 // ---------------------------------------------------------------------------
-// puzzle title: Day 6: Bitwise Operators
 // puzzle link: https://www.hackerrank.com/challenges/js10-bitwise/problem
 
 function getMaxLessThanK(n, k) {

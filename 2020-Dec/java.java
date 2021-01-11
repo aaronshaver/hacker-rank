@@ -1,8 +1,6 @@
 
 
-// ---------------------------------------------------------------------------
-// puzzle title: Drawing Book
-// puzzle link: https://www.hackerrank.com/challenges/drawing-book/problem
+// ---------------------------------------------------------------------------// puzzle link: https://www.hackerrank.com/challenges/drawing-book/problem
 
 import java.io.*;
 import java.math.*;
@@ -52,9 +50,7 @@ public class Solution {
 // ---------------------------------------------------------------------------
 
 
-// ---------------------------------------------------------------------------
-// puzzle title: Sales by Match
-// puzzle link: https://www.hackerrank.com/challenges/sock-merchant/problem
+// ---------------------------------------------------------------------------// puzzle link: https://www.hackerrank.com/challenges/sock-merchant/problem
 
 import java.io.*;
 import java.math.*;
@@ -122,7 +118,6 @@ public class Solution {
 
 
 // ---------------------------------------------------------------------------
-// puzzle title: Bill Division
 // puzzle link: https://www.hackerrank.com/challenges/bon-appetit/problem
 
 import java.io.*;
@@ -184,7 +179,6 @@ public class Solution {
 
 
 // ---------------------------------------------------------------------------
-// puzzle title: Day of the Programmer
 // puzzle link: https://www.hackerrank.com/challenges/day-of-the-programmer/problem 
 
 import java.io.*;
@@ -264,8 +258,7 @@ public class Solution {
 // ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
-// puzzle title: Java Loops II
-// puzzle link: https://www.hackerrank.com/challenges/java-loops/problem
+// puzzle title: Java Loops II// puzzle link: https://www.hackerrank.com/challenges/java-loops/problem
 
 import java.util.*;
 import java.io.*;
