@@ -1,6 +1,109 @@
 
 
-// ---------------------------------------------------------------------------// puzzle link: https://www.hackerrank.com/challenges/drawing-book/problem
+// ---------------------------------------------------------------------------
+// puzzle link: https://www.hackerrank.com/challenges/electronics-shop/problem
+import java.io.*;
+import java.math.*;
+import java.text.*;
+import java.util.*;
+import java.util.regex.*;
+import java.lang.*;
+
+public class Solution {
+
+    /*
+     * Complete the getMoneySpent function below.
+     */
+    static int[] reverseArray(int[] toReverse) {
+        // couldn't get Collections.reverse(Arrays.asList(myArray)) to work
+        // I think because these are primitives not Integers
+        int len = toReverse.length;
+        int[] newArray = new int[len];
+        
+        for (int i = 0; i < toReverse.length; i++) {
+            newArray[len - 1] = toReverse[i];
+            len -= 1;
+        }
+        
+        return newArray;
+    }
+    static int getMoneySpent(int[] keyboards, int[] drives, int b) {
+        int ops = 0;
+        int maxSpend = -1;
+        Arrays.sort(keyboards);
+        Arrays.sort(drives);
+       
+        final int[] revKeyboards = reverseArray(keyboards);
+        final int[] revDrives = reverseArray(drives);
+        
+        for (int i = 0; i < revKeyboards.length; i++) {
+            for (int j = 0; j < revDrives.length; j++) {
+                ops++;        
+                int newTotal = revKeyboards[i] + revDrives[j];
+                if ((newTotal <= b) && (newTotal > maxSpend)) {
+                    maxSpend = newTotal;
+                    break;
+                }
+            }
+        }
+        
+        System.out.printf("ops: %d", ops);
+        return maxSpend;
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] bnm = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
+
+        int b = Integer.parseInt(bnm[0]);
+
+        int n = Integer.parseInt(bnm[1]);
+
+        int m = Integer.parseInt(bnm[2]);
+
+        int[] keyboards = new int[n];
+
+        String[] keyboardsItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
+
+        for (int keyboardsItr = 0; keyboardsItr < n; keyboardsItr++) {
+            int keyboardsItem = Integer.parseInt(keyboardsItems[keyboardsItr]);
+            keyboards[keyboardsItr] = keyboardsItem;
+        }
+
+        int[] drives = new int[m];
+
+        String[] drivesItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*");
+
+        for (int drivesItr = 0; drivesItr < m; drivesItr++) {
+            int drivesItem = Integer.parseInt(drivesItems[drivesItr]);
+            drives[drivesItr] = drivesItem;
+        }
+
+        /*
+         * The maximum amount of money she can spend on a keyboard and USB drive, or -1 if she can't purchase both items
+         */
+
+        int moneySpent = getMoneySpent(keyboards, drives, b);
+
+        bufferedWriter.write(String.valueOf(moneySpent));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
+// ---------------------------------------------------------------------------
+
+
+// ---------------------------------------------------------------------------
+// puzzle link: https://www.hackerrank.com/challenges/drawing-book/problem
 
 import java.io.*;
 import java.math.*;
