@@ -42,7 +42,7 @@ public class Solution {
                 int newTotal = revKeyboards[i] + revDrives[j];
                 if ((newTotal <= b) && (newTotal > maxSpend)) {
                     maxSpend = newTotal;
-                    break;
+                    break; // reduces operations considerably
                 }
             }
         }
