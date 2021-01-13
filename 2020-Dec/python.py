@@ -1,6 +1,62 @@
 
 
 ## ---------------------------------------------------------------------------
+## 2
+## puzzle link: https://www.hackerrank.com/challenges/counting-valleys/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'pickingNumbers' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts INTEGER_ARRAY a as parameter.
+#
+
+def picking_numbers(a):
+    a.sort()
+    sub_array = []
+    array_lengths = []
+   
+    for i, value in enumerate(a):
+        sub_array.append(a[i])
+        if len(sub_array) > 1 and sub_array[-1] - sub_array[0] > 1:
+            array_lengths.append(len(sub_array) - 1)
+            # remove chain of nums with lowest value so we can keep walking forward,
+            # in case there's an even longer chain later on in the middle
+            # for example, take the series [2,2,2,3,3,3,4,4,4,4]
+            # if we didn't drop the 2s and continue, then we'd output an incorrect
+            # max length of 6 instead of 7
+            to_remove = sub_array[0]
+            sub_array = [x for x in sub_array if x != to_remove]
+    
+    if not array_lengths:
+        array_lengths.append(len(sub_array))
+
+    return max(array_lengths)
+            
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    a = list(map(int, input().rstrip().split()))
+
+    result = picking_numbers(a)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+## ---------------------------------------------------------------------------
+
+
+## ---------------------------------------------------------------------------
 ## 1
 ## puzzle link: https://www.hackerrank.com/challenges/counting-valleys/problem
 
@@ -21,7 +77,7 @@ import sys
 #  2. STRING path
 #
 
-def countingValleys(steps, path):
+def counting_valleys(steps, path):
     valleys = 0
     altitude = 0
     
@@ -44,7 +100,7 @@ if __name__ == '__main__':
 
     path = input()
 
-    result = countingValleys(steps, path)
+    result = counting_valleys(steps, path)
 
     fptr.write(str(result) + '\n')
 
