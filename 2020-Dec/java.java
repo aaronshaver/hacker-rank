@@ -1,5 +1,65 @@
 
 
+// ---------------------------------------------------------------------------
+// 8
+// puzzle link: https://www.hackerrank.com/challenges/electronics-shop/problem
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the designerPdfViewer function below.
+    static int designerPdfViewer(int[] h, String word) {
+        int tallest = 0;
+        final int offset = 97;
+        for (int i = 0; i < word.length(); i++) {
+            char letter = word.charAt(i);
+            final int index = ((int) letter) - offset;
+            int height = h[index];
+            if (height > tallest) {
+                tallest = height;
+            }
+        }
+        
+        return tallest * word.length();
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int[] h = new int[26];
+
+        String[] hItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < 26; i++) {
+            int hItem = Integer.parseInt(hItems[i]);
+            h[i] = hItem;
+        }
+
+        String word = scanner.nextLine();
+
+        int result = designerPdfViewer(h, word);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
+// ---------------------------------------------------------------------------
+
+
+// ---------------------------------------------------------------------------
 // 7
 // puzzle link: https://www.hackerrank.com/challenges/electronics-shop/problem
 import java.io.*;
