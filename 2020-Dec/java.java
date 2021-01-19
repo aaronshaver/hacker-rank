@@ -1,6 +1,96 @@
 
 
 // ---------------------------------------------------------------------------
+// puzzle link: https://www.hackerrank.com/challenges/beautiful-days-at-the-movies/problem
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+import java.util.stream.*;
+
+public class Solution {
+
+    // so the reason there are two "get reversed number" methods is because I thought
+    // that that was the slow part (so I wrote a different implementation). But in fact,     // it was my original integers list
+    // code that was slow. This still surprises me. This is the original:
+    //  List<Integer> range = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+    //
+    // That's frustrating! My assumption was that the stream library is pretty fast,    
+    // lazy evaluation, etc. whereas a brute force for loop would be slower. But clearly 
+    // that is not the case! It could also have something to do with HackerRank's 
+    // environment. Maybe on a real machine the Java 8 stream stuff would be fine? I don't know.
+
+    static int getReversedNum(int n) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(n);
+        builder = builder.reverse();
+        return Integer.parseInt(builder.toString());
+    }
+    
+    static int getReversedNum2(int n) {
+        int powersCounter = 0;
+        int total = 0;
+        List<Integer> nums = new ArrayList<>();
+        
+        double currentNum = n;
+        while (currentNum != 0) {
+            nums.add((int) currentNum % 10);
+            currentNum = Math.floor(currentNum / 10);
+        }
+        
+        // build up the reversed number in powers of ten
+        int currentPower = nums.size();
+        for (int i = 0; i < nums.size(); i++) {
+            total += nums.get(i) * Math.pow(10, currentPower - 1);
+            currentPower--;
+        }
+        
+        return total;
+    }
+    
+    static int beautifulDays(int i, int j, int k) {
+        int beautifulDays = 0;
+        
+        for (int m = i; m <= j; m++) {
+            if ((m - getReversedNum2(m)) % k == 0) {
+                beautifulDays++;
+            }
+        }
+        
+        return beautifulDays;
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] ijk = scanner.nextLine().split(" ");
+
+        int i = Integer.parseInt(ijk[0]);
+
+        int j = Integer.parseInt(ijk[1]);
+
+        int k = Integer.parseInt(ijk[2]);
+
+        int result = beautifulDays(i, j, k);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
+// ---------------------------------------------------------------------------
+
+
+// ---------------------------------------------------------------------------
 // puzzle link: https://www.hackerrank.com/challenges/angry-professor/problem
 
 import java.io.*;
