@@ -15,14 +15,18 @@ import java.util.stream.*;
 public class Solution {
 
     // so the reason there are two "get reversed number" methods is because I thought
-    // that that was the slow part (so I wrote a different implementation). But in fact,     // it was my original integers list
-    // code that was slow. This still surprises me. This is the original:
+    // that that was the slow part (so I wrote a different implementation). But in fact,     
+    // it was my original integers list
+    // code that was slow (not totally true; see below). This still surprises me. This is the original:
     //  List<Integer> range = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
     //
     // That's frustrating! My assumption was that the stream library is pretty fast,    
     // lazy evaluation, etc. whereas a brute force for loop would be slower. But clearly 
     // that is not the case! It could also have something to do with HackerRank's 
     // environment. Maybe on a real machine the Java 8 stream stuff would be fine? I don't know.
+    //
+    // After more research, I found someone else who used Java 8 streams and was able to get it to work, but he use a fluent API syntax
+    // to do ALL the operations in one go. It's really not that different from what I was doing. So I still don't quite understand it.
 
     static int getReversedNum(int n) {
         StringBuilder builder = new StringBuilder();
