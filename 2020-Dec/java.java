@@ -1,6 +1,101 @@
 
 
 // ---------------------------------------------------------------------------
+// puzzle link: https://www.hackerrank.com/challenges/cut-the-sticks/problem
+// This was a really fun puzzle!!
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the cutTheSticks function below.
+    static int[] cutTheSticks(int[] arr) {
+        List<Integer> totals = new ArrayList<>();
+        
+        // convert to ArrayList because it's easier to work with
+        List<Integer> sticks = new ArrayList<>();
+        for (int stick : arr) {
+            sticks.add(stick);
+        }
+        Collections.sort(sticks); // to put smallest at beginning for easier removal
+        
+        do {
+            Set<Integer> set = new HashSet<Integer>(sticks);
+            if (set.size() == 1) break; // all sticks are the same size
+            totals.add(sticks.size()); // count sticks
+            
+            
+            Integer min = Collections.min(sticks); // get smallest stick value
+            
+            while (sticks.get(0) == min) { // remove smallest sticks
+                sticks.remove(0);
+            }
+            
+            // cut the remaining sticks
+            List<Integer> tempSticks = new ArrayList<>();
+            for (Integer stick : sticks) {
+                tempSticks.add(stick - min);
+            }
+            sticks.clear();
+            sticks.addAll(tempSticks);
+            
+        } while (sticks.size() > 1);
+        totals.add(sticks.size());
+        
+        // convert back to int array
+        int[] output = new int[totals.size()];
+        for (int i = 0; i < totals.size(); i++) {
+            output[i] = totals.get(i);
+        }
+        
+        return output;
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int n = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        int[] arr = new int[n];
+
+        String[] arrItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < n; i++) {
+            int arrItem = Integer.parseInt(arrItems[i]);
+            arr[i] = arrItem;
+        }
+
+        int[] result = cutTheSticks(arr);
+
+        for (int i = 0; i < result.length; i++) {
+            bufferedWriter.write(String.valueOf(result[i]));
+
+            if (i != result.length - 1) {
+                bufferedWriter.write("\n");
+            }
+        }
+
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
+// ---------------------------------------------------------------------------
+
+
+// ---------------------------------------------------------------------------
 // puzzle link: https://www.hackerrank.com/challenges/library-fine/problem
 
 import java.io.*;
