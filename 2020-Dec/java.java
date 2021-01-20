@@ -1,6 +1,68 @@
 
 
 // ---------------------------------------------------------------------------
+// puzzle link: https://www.hackerrank.com/challenges/sherlock-and-squares/problem
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the squares function below.
+    static int squares(int a, int b) {
+        // I went through a few iterations on this puzzle
+        // First I did a brute force looking at whether past the
+        // decimal of a square root operation on each number was 0.0,
+        // which is very slow
+        //
+        // Next I tried pre-computing ~31,600 squares once and doing a
+        // .contains() check; I thought it was clever but it was too slow
+        // 
+        // Then I broke down and looked at the Discussions and found an
+        // explanation in English and implemented that explanation in code
+        
+        final int lowFloor = (int) Math.sqrt(a);
+        final int highFloor = (int) Math.sqrt(b);
+        int total = highFloor - lowFloor;
+        if (lowFloor * lowFloor == a) total++; // feels inelegant 
+        return total;
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int q = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int qItr = 0; qItr < q; qItr++) {
+            String[] ab = scanner.nextLine().split(" ");
+
+            int a = Integer.parseInt(ab[0]);
+
+            int b = Integer.parseInt(ab[1]);
+
+            int result = squares(a, b);
+
+            bufferedWriter.write(String.valueOf(result));
+            bufferedWriter.newLine();
+        }
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
+// ---------------------------------------------------------------------------
+
+
+// ---------------------------------------------------------------------------
 // puzzle link: https://www.hackerrank.com/challenges/find-digits/problem
 import java.io.*;
 import java.math.*;
