@@ -23,30 +23,19 @@ public class Solution {
         for (int stick : arr) {
             sticks.add(stick);
         }
-        Collections.sort(sticks); // to put smallest at beginning for easier removal
         
+        totals.add(sticks.size()); // add initial count of sticks to list of counts
         do {
             Set<Integer> set = new HashSet<Integer>(sticks);
             if (set.size() == 1) break; // all sticks are the same size
-            totals.add(sticks.size()); // count sticks
-            
             
             Integer min = Collections.min(sticks); // get smallest stick value
             
-            while (sticks.get(0) == min) { // remove smallest sticks
-                sticks.remove(0);
-            }
+            sticks.removeAll(Collections.singleton(min)); // remove all smallest sticks
             
-            // cut the remaining sticks
-            List<Integer> tempSticks = new ArrayList<>();
-            for (Integer stick : sticks) {
-                tempSticks.add(stick - min);
-            }
-            sticks.clear();
-            sticks.addAll(tempSticks);
+            totals.add(sticks.size()); // add count of sticks to list of counts
             
         } while (sticks.size() > 1);
-        totals.add(sticks.size());
         
         // convert back to int array
         int[] output = new int[totals.size()];
