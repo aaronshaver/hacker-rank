@@ -1,6 +1,46 @@
 
 
 ## ---------------------------------------------------------------------------
+## puzzle link: https://www.hackerrank.com/challenges/repeated-string/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the repeatedString function below.
+def repeatedString(s, n):
+    total = 0
+    num_a = len([x for x in s if x == 'a'])
+    main_a = num_a * (n // len(s))
+
+    remainder_num = n % len(s) 
+    additional_a = 0
+    if remainder_num > 0: 
+        remainder_str = s[0:remainder_num]
+        additional_a = len([x for x in remainder_str if x == 'a'])
+        
+    return main_a + additional_a
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    n = int(input())
+
+    result = repeatedString(s, n)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+## ---------------------------------------------------------------------------
+
+
+## ---------------------------------------------------------------------------
 ## 2
 ## puzzle link: https://www.hackerrank.com/challenges/counting-valleys/problem
 
