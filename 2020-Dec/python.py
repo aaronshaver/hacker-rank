@@ -1,6 +1,48 @@
 
 
 ## ---------------------------------------------------------------------------
+## puzzle link: https://www.hackerrank.com/challenges/jumping-on-the-clouds/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the jumpingOnClouds function below.
+def jumpingOnClouds(c):
+    jumps = 0
+    i = 0
+     
+    while i < len(c) - 1:  # don't need to do anything if on last cloud
+        if (i + 2) < len(c):
+            if c[i + 2] == 0:
+                i += 2  # do 2-space-jump
+                jumps += 1
+                continue
+        jumps += 1
+        i += 1
+        
+    return jumps
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    c = list(map(int, input().rstrip().split()))
+
+    result = jumpingOnClouds(c)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+## ---------------------------------------------------------------------------
+
+
+## ---------------------------------------------------------------------------
 ## puzzle link: https://www.hackerrank.com/challenges/repeated-string/problem
 
 #!/bin/python3
