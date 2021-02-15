@@ -1,7 +1,61 @@
 
 
-## ---------------------------------------------------------------------------
-## puzzle link: https://www.hackerrank.com/challenges/jumping-on-the-clouds/problem
+# ---------------------------------------------------------------------------
+# puzzle link: https://www.hackerrank.com/challenges/acm-icpc-team/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+def acmTeam(topic):
+    max_binary_dec = 0 
+    total_teams = 0
+    people_count = len(topic)
+    
+    for i in range(people_count):
+        for j in range(i + 1, people_count):
+            current_bin_dec = int(topic[i], 2) | int(topic[j], 2)
+            if current_bin_dec < max_binary_dec:
+                continue
+            elif current_bin_dec == max_binary_dec:
+                total_teams += 1
+            elif current_bin_dec > max_binary_dec:
+                max_binary_dec = current_bin_dec
+                total_teams = 1
+    
+    max_topics = bin(max_binary_dec).count("1")
+    return [max_topics, total_teams]
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nm = input().split()
+
+    n = int(nm[0])
+
+    m = int(nm[1])
+
+    topic = []
+
+    for _ in range(n):
+        topic_item = input()
+        topic.append(topic_item)
+
+    result = acmTeam(topic)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# puzzle link: https://www.hackerrank.com/challenges/jumping-on-the-clouds/problem
 
 #!/bin/python3
 
