@@ -3,6 +3,14 @@
 # ---------------------------------------------------------------------------
 # puzzle link: https://www.hackerrank.com/challenges/acm-icpc-team/problem
 
+# I had to look up some of this. It was a very fiddly problem that, unless solved
+# in just such a certain way, would fail to perform well with large inputs
+#
+# I successfully created an algorithm that would solve smaller inputs, but had 
+# to look up these combinations() and .count('1') tricks
+
+#!/bin/python3
+
 #!/bin/python3
 
 import math
@@ -10,25 +18,23 @@ import os
 import random
 import re
 import sys
+from itertools import combinations
 
 def acmTeam(topic):
     max_binary_dec = 0 
     total_teams = 0
     people_count = len(topic)
     
-    for i in range(people_count):
-        for j in range(i + 1, people_count):
-            current_bin_dec = int(topic[i], 2) | int(topic[j], 2)
-            if current_bin_dec < max_binary_dec:
-                continue
-            elif current_bin_dec == max_binary_dec:
-                total_teams += 1
-            elif current_bin_dec > max_binary_dec:
-                max_binary_dec = current_bin_dec
-                total_teams = 1
+    pairs = combinations(topic, 2)
+    for pair in pairs:
+        current_bin_dec = bin(int(pair[0], 2) | int(pair[1], 2)).count('1')
+        if max_binary_dec < current_bin_dec:
+            max_binary_dec = current_bin_dec
+            total_teams = 0
+        if current_bin_dec == max_binary_dec:
+            total_teams += 1
     
-    max_topics = bin(max_binary_dec).count("1")
-    return [max_topics, total_teams]
+    return [max_binary_dec, total_teams]
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
