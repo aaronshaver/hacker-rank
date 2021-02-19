@@ -1,4 +1,62 @@
 
+# ---------------------------------------------------------------------------
+# puzzle link: https://www.hackerrank.com/challenges/acm-icpc-team/problem
+
+# note: obviously this is O(n^2) so it's not going to do well for large
+# input arrays. Thninking about a more performant solution, the tricky
+# bit is retaining the original indices of the unsorted list
+# I was thinking a data structure like:
+# {
+#   2: [1,2],
+#   3: [4],
+#   4: [3]
+# }
+# where the key is the cost and the value is a list of original array positions
+# Then you could iterate through the keys, get the reciprocal number
+# (2 for 2 when total is 4), (maybe 1 for 3 when total is 4 and diff nums)
+# So our key is 2, reciprocal is 2, we look to see if count of indices for key 2
+# is > 1, bam done
+# For the 1 and 3 example, if our first key is 1, reciprocal is 3, so simply get
+# the value stored for key 3 (or if there is no such key, continue the for loop)
+# I think this would be O(2n)?
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the icecreamParlor function below.
+def icecreamParlor(m, arr):
+    indexes = []
+    for i in range(len(arr)):
+        reciprocal_num = m - arr[i] 
+        for j in range(i + 1, len(arr)):
+            if arr[i] + arr[j] == m:
+                return [i+1, j+1]
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        m = int(input())
+
+        n = int(input())
+
+        arr = list(map(int, input().rstrip().split()))
+
+        result = icecreamParlor(m, arr)
+
+        fptr.write(' '.join(map(str, result)))
+        fptr.write('\n')
+
+    fptr.close()
+# ---------------------------------------------------------------------------
+
 
 # ---------------------------------------------------------------------------
 # puzzle link: https://www.hackerrank.com/challenges/acm-icpc-team/problem
