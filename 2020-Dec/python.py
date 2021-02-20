@@ -18,7 +18,7 @@
 # is > 1, bam done
 # For the 1 and 3 example, if our first key is 1, reciprocal is 3, so simply get
 # the value stored for key 3 (or if there is no such key, continue the for loop)
-# I think this would be O(2n)?
+# I think this would be O(2n) -> O(n)
 
 #!/bin/python3
 
