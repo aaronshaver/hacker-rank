@@ -1,6 +1,57 @@
 
 
 # ---------------------------------------------------------------------------
+# puzzle link: https://www.hackerrank.com/challenges/missing-numbers/problem 
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the missingNumbers function below.
+def missingNumbers(arr, brr):
+    missing_nums = {}
+    
+    # construct counts of all the numbers we have to account for
+    for num in brr:
+        if num not in missing_nums:
+            missing_nums[num] = 1
+        else:
+            missing_nums[num] = missing_nums[num] + 1
+    
+    for num in arr:
+        if missing_nums[num] == 1:
+            missing_nums.pop(num, None)  # remove from dict
+        else:
+            missing_nums[num] = missing_nums[num] - 1  # decrement count
+            
+    return sorted(missing_nums.keys())
+    
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    m = int(input())
+
+    brr = list(map(int, input().rstrip().split()))
+
+    result = missingNumbers(arr, brr)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
 # puzzle link: https://www.hackerrank.com/challenges/kaprekar-numbers/problem
 
 #!/bin/python3
