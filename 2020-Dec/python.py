@@ -1,4 +1,46 @@
 
+
+# ---------------------------------------------------------------------------
+# puzzle link: https://www.hackerrank.com/challenges/kaprekar-numbers/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the kaprekarNumbers function below.
+def kaprekarNumbers(p, q):
+    output = ""
+    for i in range(p, q + 1):
+        digits_length = len(str(i))
+        if digits_length == 1:
+            if i == 1 or i == 9:
+                output += str(i) + ' '
+                continue
+        else:
+            square = i ** 2
+            stringified_square = str(square)
+            right = stringified_square[-digits_length:]
+            left = stringified_square[:-digits_length]
+            if int(left) + int(right) == i:
+                output += str(i) + ' '
+    if output:
+        print(output)
+    else:
+        print("INVALID RANGE")
+
+if __name__ == '__main__':
+    p = int(input())
+
+    q = int(input())
+
+    kaprekarNumbers(p, q)
+# ---------------------------------------------------------------------------
+
+
 # ---------------------------------------------------------------------------
 # puzzle link: https://www.hackerrank.com/challenges/acm-icpc-team/problem
 
