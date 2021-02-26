@@ -1,6 +1,57 @@
 
 
 # ---------------------------------------------------------------------------
+# puzzle link: https://www.hackerrank.com/challenges/beautiful-triplets/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the beautifulTriplets function below.
+def beautifulTriplets(d, arr):
+    
+    # note: HackerRank didn't want me to optimize any further;
+    # however, I had at least one idea of keeping track of i numbers
+    # that weren't part of a successful triplet, and thus if you encounter
+    # that number again as i, you could just skip it
+    
+    triplets = []
+    for i in range(len(arr)):
+        starting_num = arr[i]
+        second_num_target = starting_num + d
+        for j in range(i + 1, len(arr)):
+            if arr[j] - arr[i] == d:
+                for k in range(j + 1, len(arr)):
+                    if arr[k] - arr[j] == d:
+                        triplets.append([i,j,k])
+                        break
+                        
+    return len(triplets)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nd = input().split()
+
+    n = int(nd[0])
+
+    d = int(nd[1])
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = beautifulTriplets(d, arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
 # puzzle link: https://www.hackerrank.com/challenges/missing-numbers/problem 
 
 #!/bin/python3
