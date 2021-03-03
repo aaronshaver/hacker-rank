@@ -1,6 +1,51 @@
 
 
 # ---------------------------------------------------------------------------
+# puzzle link: https://www.hackerrank.com/challenges/minimum-distances/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the minimumDistances function below.
+def minimumDistances(a):
+    min_distance = -1 
+    distances = {}
+    for i, val in enumerate(a):
+        if val not in distances:
+            distances[val] = [i]
+        else:
+            distances[val] = distances[val] + [i]
+    
+    for key in distances.keys():
+        if len(distances[key]) >= 2:
+            for i in range(len(distances[key]) - 1):
+                distance = abs(distances[key][i] - distances[key][i + 1])
+                if distance < min_distance or min_distance == -1:
+                    min_distance = distance
+    
+    return min_distance
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    a = list(map(int, input().rstrip().split()))
+
+    result = minimumDistances(a)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
 # puzzle link: https://www.hackerrank.com/challenges/beautiful-triplets/problem
 
 #!/bin/python3
