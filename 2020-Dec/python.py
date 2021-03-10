@@ -1,6 +1,57 @@
 
 
 # ---------------------------------------------------------------------------
+# puzzle link: https://www.hackerrank.com/challenges/fair-rations/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the fairRations function below.
+def fairRations(subjects):
+    # odd number of odds leads to infinite loop of incrementing
+    odds_count = 0
+    for subject in subjects:
+        if subject % 2 != 0:
+            odds_count += 1
+    if odds_count % 2 != 0:
+        return 'NO'
+    
+    increments = 0
+    for i in range(len(subjects)):
+        if subjects[i] % 2 != 0:
+            increments += 1
+            
+            if i + 1 < len(subjects):
+                increments += 1
+                subjects[i + 1] += 1
+            elif i - 1 > -1:
+                increments += 1
+                subjects[i - 1] += 1
+    
+    return increments
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    N = int(input())
+
+    B = list(map(int, input().rstrip().split()))
+
+    result = fairRations(B)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
 # puzzle link: https://www.hackerrank.com/challenges/minimum-distances/problem
 
 #!/bin/python3
