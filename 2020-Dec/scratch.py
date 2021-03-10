@@ -1,12 +1,16 @@
+data = ["cal", "lac", "mic", "blah", "totally", "ylla", "rum", "mur", "listen", "netsil"]
 
-class Animal():
-    def __init__(self):
-        self.is_animal = True
+def get_palindrome_pairs(words):
+    palindromes = []
+    for i in range(len(words)):
+        for j in range(i+1, len(words)):
+            combined = words[i] + words[j]
+            combined_swapped = words[j] + words[i]
+            if combined == combined[::-1]:
+                palindromes.append(combined)
+            if combined_swapped == combined_swapped[::-1]:
+                palindromes.append(combined_swapped)
 
-    def speak(self):
-        print("generic sound")
+    return palindromes
 
-
-class Dog(Animal):
-    def speak(self):
-        print("woof")
+print(get_palindrome_pairs(data))
