@@ -1,4 +1,4 @@
-data = ["cal", "lac", "mic", "blah", "totally", "ylla", "rum", "mur", "listen", "netsil"]
+data = ["cal", "lac", "abc", "ba", "totally", "ylla", "rum", "mur", "listen", "netsil"]
 
 def get_palindrome_pairs(words):
     palindromes = []
