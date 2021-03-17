@@ -1,6 +1,55 @@
 
 
 # ---------------------------------------------------------------------------
+# puzzle link: https://www.hackerrank.com/challenges/halloween-sale/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the howManyGames function below.
+def howManyGames(price, discount, minimum, wallet):
+    if wallet < price:
+        return 0  # edge case of initial price being too high
+    
+    games_purchased = 0
+    
+    while wallet >= price:
+        wallet -= price
+        games_purchased += 1
+        
+        price -= discount
+        if price < minimum:
+            price = minimum
+    
+    return games_purchased
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    pdms = input().split()
+
+    p = int(pdms[0])
+
+    d = int(pdms[1])
+
+    m = int(pdms[2])
+
+    s = int(pdms[3])
+
+    answer = howManyGames(p, d, m, s)
+
+    fptr.write(str(answer) + '\n')
+
+    fptr.close()
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
 # puzzle link: https://www.hackerrank.com/challenges/camelcase/problem
 
 #!/bin/python3
